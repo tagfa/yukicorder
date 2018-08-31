@@ -20,3 +20,11 @@ N
 
 最短の移動数、または　-1
 '''
+
+N=int(input())
+
+print(N)
+
+#移動するマス数を求める関数
+def calcpop(num):
+    bit_num=int(num,)
