@@ -20,11 +20,31 @@ N
 
 最短の移動数、または　-1
 '''
-
-N=int(input())
-
-print(N)
-
+import queue
 #移動するマス数を求める関数
 def calcpop(num):
-    bit_num=int(num,)
+    return bin(num).count("1")
+
+N=int(input())
+q=queue.Queue()
+q.put(1)
+
+masu =[]
+masu=[0]*10010
+masu[1]=1
+
+while q.empty()==False:
+
+    curpos=q.get()
+    popcnt=calcpop(curpos)
+    if (curpos-popcnt>0 and masu[curpos-popcnt]==0):
+        masu[curpos-popcnt]=masu[curpos]+1
+        q.put(curpos-popcnt)
+    if (curpos+popcnt<=N and masu[curpos+popcnt]==0):
+        masu[curpos+popcnt]=masu[curpos]+1
+        q.put(curpos+popcnt)
+
+if masu[N]==0:
+    print(-1)
+else:
+    print(masu[N])
